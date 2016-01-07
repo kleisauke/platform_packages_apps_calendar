@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+repositories {
+    maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+}
+
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.android.calendar2"
+        minSdkVersion 14
+        targetSdkVersion 23
+
+        testApplicationId "com.android.calendar.tests"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile project(':common')
+    compile project(':chips')
+    compile project(':calendarCommon')
+    compile project(':colorpicker')
+    compile project(':datetimepicker')
+    compile project(':timezonepicker')
+    compile 'com.android.support:support-v4:23.1.1'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-SNAPSHOT'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-SNAPSHOT'
+}
